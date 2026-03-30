@@ -1,8 +1,19 @@
 # BizAudit
 
+A domain-driven CLI prototype for business-aware code review.
+
 BizAudit is a domain-driven CLI prototype for business-aware code review. It reads a linter report, searches nearby business documents in the codebase, and produces an impact evaluation for each detected defect.
 
 The current repository is best understood as a working CLI skeleton for a larger audit platform. The end-to-end flow is already wired together, while some integrations, especially the real LLM gateway, are still mocked.
+
+## Project Status
+
+BizAudit is in an early but usable prototype stage.
+
+- the CLI workflow is implemented end to end
+- documentation is in place for English and Chinese readers
+- the architecture is ready for real parser and LLM upgrades
+- some production-facing integrations are still intentionally mocked
 
 ## Why BizAudit
 
@@ -53,6 +64,13 @@ Install dependencies:
 
 ```bash
 npm install
+```
+
+Validate the project locally:
+
+```bash
+npm run typecheck
+npm run build
 ```
 
 ## Quick Start
@@ -158,6 +176,8 @@ This is important before publishing or demoing the project:
 - Chinese user guide: [使用手册.md](./使用手册.md)
 - Architecture notes: [main.md](./main.md)
 - CLI task checklist: [todo-cli.md](./todo-cli.md)
+- Contribution guide: [CONTRIBUTING.md](./CONTRIBUTING.md)
+- Changelog: [CHANGELOG.md](./CHANGELOG.md)
 
 ## Suggested Repository Positioning
 
@@ -168,6 +188,10 @@ If you publish this project to Git, a good description would be:
 Suggested GitHub topics:
 
 `typescript`, `cli`, `code-review`, `static-analysis`, `domain-driven-design`, `business-rules`, `eslint`, `developer-tools`
+
+## Contributing
+
+Contributions are welcome. Start with [CONTRIBUTING.md](./CONTRIBUTING.md) for setup, expectations, and the recommended workflow.
 
 ## License
 
