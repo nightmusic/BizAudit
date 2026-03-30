@@ -3,7 +3,8 @@ import { SeverityLevel } from '../types/SeverityLevel';
 export class EvaluationResult {
   constructor(
     public readonly severity: SeverityLevel,
-    public readonly impactDescription: string
+    public readonly impactDescription: string,
+    public readonly recommendedAction: string
   ) {
     Object.freeze(this); // 值对象应当保持不可变特性
   }

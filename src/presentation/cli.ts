@@ -78,6 +78,7 @@ export function setupCLI() {
                   },
                   severity:    t.result?.severity    ?? null,
                   impact:      t.result?.impactDescription ?? null,
+                  recommendedAction: t.result?.recommendedAction ?? null,
                   errorReason: t.errorReason         ?? null,
                 })),
                 null, 2

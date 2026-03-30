@@ -21,6 +21,13 @@ const SEVERITY_LABEL: Record<SeverityLevel, string> = {
   [SeverityLevel.NONE]:   '○ NONE   ',
 };
 
+const ACTION_LABEL: Record<string, string> = {
+  BLOCK_RELEASE: '阻断发布',
+  FIX_BEFORE_RELEASE: '发布前修复',
+  SCHEDULED_FIX: '排期修复',
+  MONITOR: '持续观察',
+};
+
 export class ConsoleResultRenderer implements DeliveryPort {
   /**
    * 实现 DeliveryPort 接口：供 Orchestrator 在流程末尾调用
@@ -65,6 +72,7 @@ export class ConsoleResultRenderer implements DeliveryPort {
       console.log(`  ${pc.dim('业务域:')} ${pc.magenta(task.businessContext.domainName)}`);
     }
 
+    console.log(`  ${pc.dim('处置建议:')} ${pc.bold(ACTION_LABEL[result.recommendedAction] ?? result.recommendedAction)}`);
     console.log(`  ${pc.dim('影响评估:')}`);
     console.log(`    ${pc.italic(result.impactDescription)}`);
   }
