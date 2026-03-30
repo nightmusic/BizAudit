@@ -6,6 +6,10 @@ This document explains how to run BizAudit, how to prepare input data, how to in
 
 BizAudit is a command-line tool for business-aware defect review. It reads a linter report, tries to discover nearby business documentation, and then generates an impact evaluation for each defect.
 
+Its main purpose is not to find more bugs than code review already found. Its purpose is to judge the business consequences of those bugs.
+
+This is especially useful in AI-assisted development and vibe coding scenarios, where review tools may report many defects, but a seemingly minor bug can still cause a major business failure once it hits real workflows.
+
 ## 2. Prerequisites
 
 ### 2.1 Environment
@@ -38,6 +42,12 @@ BizAudit currently supports the following workflow:
 - build an impact assessment prompt
 - evaluate the defect against business context
 - print the result as terminal text or JSON
+
+In practical terms, BizAudit helps answer questions like:
+
+- Does this bug only affect code quality, or can it damage a real business process?
+- Is this defect just a technical warning, or can it break payment, ordering, settlement, permissions, or data integrity?
+- Should this issue be fixed later, fixed now, or treated as a release blocker?
 
 ## 4. Input Requirements
 
@@ -189,6 +199,8 @@ The default terminal output includes:
 - impact evaluation text
 - summary counts
 
+The impact evaluation is the key value of the tool. It is meant to explain the business blast radius of a bug, not just restate the technical finding.
+
 Severity levels:
 
 - `FATAL`
@@ -228,6 +240,8 @@ Field descriptions:
 - `impact`: impact assessment text
 - `errorReason`: failure reason, only populated on failed tasks
 
+When reviewing output, the most important field is usually `impact`, because it tells you why a bug matters in business terms.
+
 ## 9. Task Status
 
 The current status model includes:
@@ -250,17 +264,23 @@ In practice, once a defect enters the workflow, it usually ends as:
 npx ts-node src/presentation/cli.ts audit ./reports/eslint-report.json
 ```
 
+Use this when you want to quickly inspect which code-review findings may have real business consequences.
+
 ### Scenario 2: Focus on high-risk issues first
 
 ```bash
 npx ts-node src/presentation/cli.ts audit ./reports/eslint-report.json --severity-filter high
 ```
 
+Use this when a review tool reported many bugs and you want to prioritize defects that may create severe business impact.
+
 ### Scenario 3: Export JSON for scripts or CI pipelines
 
 ```bash
 npx ts-node src/presentation/cli.ts audit ./reports/eslint-report.json --format json
 ```
+
+Use this when you want another system to consume the impact evaluation and decide whether a release, merge, or alert should be blocked.
 
 ## 11. Troubleshooting
 

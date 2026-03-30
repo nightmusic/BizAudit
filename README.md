@@ -1,8 +1,8 @@
 # BizAudit
 
-A domain-driven CLI prototype for business-aware code review.
+A domain-driven CLI prototype for business-aware bug review.
 
-BizAudit is a domain-driven CLI prototype for business-aware code review. It reads a linter report, searches nearby business documents in the codebase, and produces an impact evaluation for each detected defect.
+BizAudit is a domain-driven CLI prototype for business-aware defect review. It reads bugs discovered during code review or static analysis, searches nearby business documents in the codebase, and produces an impact evaluation for each defect.
 
 The current repository is best understood as a working CLI skeleton for a larger audit platform. The end-to-end flow is already wired together, while some integrations, especially the real LLM gateway, are still mocked.
 
@@ -17,11 +17,25 @@ BizAudit is in an early but usable prototype stage.
 
 ## Why BizAudit
 
-Traditional static analysis tools are good at finding technical defects, but they do not explain what those defects mean for business behavior. BizAudit adds that missing layer by combining:
+In AI-assisted development and vibe coding workflows, code review can surface a large number of bugs. The hard part is not just finding defects, but deciding which ones are harmless engineering noise and which ones can break a critical business flow.
+
+Traditional static analysis tools are good at finding technical defects, but they do not explain what those defects mean for business behavior. A bug that looks minor at code level can still cause a destructive business outcome, such as:
+
+- incorrect payment status transitions
+- duplicated order creation
+- missing entitlement checks
+- silent inventory corruption
+- invalid settlement, refund, or reconciliation data
+
+BizAudit adds that missing layer by combining:
 
 - technical defects from static analysis tools
 - business context from `.feature`, `domain.md`, or `README.md` files
 - an impact assessment step that maps technical issues to business risk
+
+Its goal is to answer a more useful question than "Is this bug technically serious?":
+
+> If this bug reaches production, what business damage can it actually cause?
 
 ## Current Capabilities
 
@@ -29,6 +43,7 @@ Traditional static analysis tools are good at finding technical defects, but the
 - Convert report entries into internal `TechDefect` entities
 - Discover nearby business documents from the defect file path upward
 - Build an audit workflow for each defect
+- Re-evaluate code-review bugs through a business-risk lens
 - Render results as colored terminal output or JSON
 - Filter completed results by severity level
 
@@ -158,6 +173,12 @@ JSON output includes:
 - severity
 - impact
 - failure reason
+
+The most important output is the business impact statement. It helps teams distinguish:
+
+- technically minor but business-critical defects
+- technically noisy but low-business-impact defects
+- issues that should block release versus issues that can be scheduled later
 
 ## Current Limitations
 
