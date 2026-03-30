@@ -1,15 +1,36 @@
 {
-  "name": "workreview",
+  "name": "bizaudit",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A domain-driven CLI prototype that combines static analysis defects with business context to produce business impact evaluations.",
+  "main": "dist/presentation/cli.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "start": "ts-node src/presentation/cli.ts",
+    "help": "ts-node src/presentation/cli.ts --help",
+    "test": "npm run typecheck"
   },
-  "keywords": [],
+  "keywords": [
+    "bizaudit",
+    "cli",
+    "code-review",
+    "static-analysis",
+    "domain-driven-design",
+    "business-rules",
+    "typescript",
+    "eslint"
+  ],
   "author": "",
   "license": "MIT",
   "type": "commonjs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nightmusic/BizAudit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nightmusic/BizAudit/issues"
+  },
+  "homepage": "https://github.com/nightmusic/BizAudit#readme",
   "devDependencies": {
     "@types/node": "^25.5.0",
     "ts-node": "^10.9.2",

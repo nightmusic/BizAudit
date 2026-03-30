@@ -165,6 +165,10 @@ If you publish this project to Git, a good description would be:
 
 > A domain-driven CLI prototype that combines static analysis defects with business context to produce business impact evaluations.
 
+Suggested GitHub topics:
+
+`typescript`, `cli`, `code-review`, `static-analysis`, `domain-driven-design`, `business-rules`, `eslint`, `developer-tools`
+
 ## License
 
 This project is licensed under the MIT License. See [LICENSE](./LICENSE) for details.
