@@ -21,6 +21,8 @@ const SEVERITY_ORDER: Record<SeverityLevel, number> = {
   [SeverityLevel.FATAL]:  4,
 };
 
+const ALLOWED_SEVERITY_FILTERS = ['none', 'low', 'medium', 'high', 'fatal'] as const;
+
 export function setupCLI() {
   const program = new Command();
 
@@ -43,8 +45,16 @@ export function setupCLI() {
     .action(async (reportPath: string, options: any) => {
       const absoluteReportPath = path.resolve(reportPath);
       const apiKey = options.apiKey ?? process.env['LLM_API_KEY'];
-      const minSeverity: SeverityLevel =
-        (options.severityFilter?.toUpperCase() as SeverityLevel) ?? SeverityLevel.LOW;
+      const severityFilterInput = String(options.severityFilter ?? 'low').toLowerCase();
+
+      if (!ALLOWED_SEVERITY_FILTERS.includes(severityFilterInput as any)) {
+        throw new Error(
+          `Invalid --severity-filter: "${options.severityFilter}". ` +
+          `Allowed values: ${ALLOWED_SEVERITY_FILTERS.join('|')}`
+        );
+      }
+
+      const minSeverity = severityFilterInput.toUpperCase() as SeverityLevel;
 
       console.log(pc.cyan(`\n🚀 BizAudit 启动 — 报告文件: ${absoluteReportPath}`));
 

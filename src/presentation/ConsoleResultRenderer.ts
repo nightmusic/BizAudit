@@ -123,7 +123,8 @@ export class ConsoleResultRenderer implements DeliveryPort {
       `${SEVERITY_STYLE[SeverityLevel.FATAL](String(counts[SeverityLevel.FATAL]) + ' FATAL')}  ` +
       `${SEVERITY_STYLE[SeverityLevel.HIGH](String(counts[SeverityLevel.HIGH]) + ' HIGH')}  ` +
       `${SEVERITY_STYLE[SeverityLevel.MEDIUM](String(counts[SeverityLevel.MEDIUM]) + ' MEDIUM')}  ` +
-      `${SEVERITY_STYLE[SeverityLevel.LOW](String(counts[SeverityLevel.LOW]) + ' LOW')}`
+      `${SEVERITY_STYLE[SeverityLevel.LOW](String(counts[SeverityLevel.LOW]) + ' LOW')}  ` +
+      `${SEVERITY_STYLE[SeverityLevel.NONE](String(counts[SeverityLevel.NONE]) + ' NONE')}`
     );
     console.log(pc.bold(pc.white('═══════════════════════════════════════\n')));
   }

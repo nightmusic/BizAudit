@@ -24,21 +24,29 @@ export class LinterReportParser implements DefectIngestionPort {
       }
 
       for (const fileResult of parsedReport) {
-        if (!fileResult.messages || !Array.isArray(fileResult.messages)) {
+        if (!fileResult?.filePath || !fileResult.messages || !Array.isArray(fileResult.messages)) {
           continue;
         }
 
         for (const msg of fileResult.messages) {
-          if (msg.ruleId && msg.line) {
-            defects.push(
-              new TechDefect(
-                path.resolve(fileResult.filePath),
-                msg.line,
-                msg.ruleId,
-                msg.message || 'No description provided'
-              )
-            );
-          }
+          // Keep fatal/parser-level defects in the pipeline even when ruleId is missing.
+          const errorSignature =
+            typeof msg?.ruleId === 'string' && msg.ruleId.trim().length > 0
+              ? msg.ruleId
+              : 'fatal';
+          const lineNumber =
+            typeof msg?.line === 'number' && msg.line > 0
+              ? msg.line
+              : 0;
+
+          defects.push(
+            new TechDefect(
+              path.resolve(fileResult.filePath),
+              lineNumber,
+              errorSignature,
+              msg?.message || 'No description provided'
+            )
+          );
         }
       }
     } catch (error: any) {

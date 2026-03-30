@@ -88,7 +88,8 @@ Important details:
 - the top-level value must be an array
 - each file result should contain `filePath`
 - `messages` must be an array
-- only messages with both `ruleId` and `line` are included in the audit flow
+- if `ruleId` is missing (for example parser/fatal cases), BizAudit normalizes it as `fatal`
+- if `line` is missing, BizAudit normalizes it as `0` so the defect is still reviewed
 
 ## 5. Business Context Discovery Rules
 
@@ -160,6 +161,7 @@ Notes:
 - completed tasks are filtered by severity
 - failed tasks are still shown
 - non-completed items without results are preserved for troubleshooting
+- invalid filter values fail fast with an explicit error message
 
 ### 7.3 `--api-key`
 
