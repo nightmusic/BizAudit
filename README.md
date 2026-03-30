@@ -1,8 +1,10 @@
 # BizAudit
 
-A domain-driven CLI prototype for business-aware bug review.
+A business-aware defect review CLI for AI-assisted development.
 
-BizAudit is a domain-driven CLI prototype for business-aware defect review. It reads bugs discovered during code review or static analysis, searches nearby business documents in the codebase, and produces an impact evaluation for each defect.
+BizAudit is a business-aware defect review CLI for AI-assisted development. It reads bugs discovered during code review or static analysis, searches nearby business documents in the codebase, and produces an impact evaluation for each defect.
+
+Its main value is identifying technically minor bugs that may still cause destructive business impact.
 
 The current repository is best understood as a working CLI skeleton for a larger audit platform. The end-to-end flow is already wired together, while some integrations, especially the real LLM gateway, are still mocked.
 
@@ -208,7 +210,7 @@ If you publish this project to Git, a good description would be:
 
 Suggested GitHub topics:
 
-`typescript`, `cli`, `code-review`, `static-analysis`, `domain-driven-design`, `business-rules`, `eslint`, `developer-tools`
+`typescript`, `cli`, `code-review`, `static-analysis`, `business-impact`, `domain-driven-design`, `ai-assisted-development`, `developer-tools`
 
 ## Contributing
 
