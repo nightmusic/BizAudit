@@ -202,16 +202,6 @@ This is important before publishing or demoing the project:
 - Contribution guide: [CONTRIBUTING.md](./CONTRIBUTING.md)
 - Changelog: [CHANGELOG.md](./CHANGELOG.md)
 
-## Suggested Repository Positioning
-
-If you publish this project to Git, a good description would be:
-
-> A domain-driven CLI prototype that combines static analysis defects with business context to produce business impact evaluations.
-
-Suggested GitHub topics:
-
-`typescript`, `cli`, `code-review`, `static-analysis`, `business-impact`, `domain-driven-design`, `ai-assisted-development`, `developer-tools`
-
 ## Contributing
 
 Contributions are welcome. Start with [CONTRIBUTING.md](./CONTRIBUTING.md) for setup, expectations, and the recommended workflow.
